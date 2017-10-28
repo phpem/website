@@ -27,3 +27,25 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    App\Content\PageContentRetriever:
+        class: App\Content\PageContentRetriever
+        arguments:
+            - '%kernel.root_dir%/../content/pages'
+
+    League\CommonMark\CommonMarkConverter:
+        class: League\CommonMark\CommonMarkConverter
+
+    App\Parser\Markdown\LeagueCommonMarkMarkdownParser:
+        class: App\Parser\Markdown\LeagueCommonMarkMarkdownParser
+        arguments:
+            - '@League\CommonMark\CommonMarkConverter'
+
+    App\Parser\Markdown\MarkdownParser: '@App\Parser\Markdown\LeagueCommonMarkMarkdownParser'
+
+    App\Twig\AppExtension:
+        class: App\Twig\AppExtension
+        arguments:
+            - '@App\Parser\Markdown\MarkdownParser'
+        tags:
+            - twig.extension

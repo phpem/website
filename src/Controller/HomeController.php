@@ -11,10 +11,10 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class HomePageController extends Controller
+class HomeController extends Controller
 {
-    public function index($name)
+    public function index()
     {
-        return $this->render('homepage/index.html.twig', ['name' => $name]);
+        return $this->render('home/index.html.twig');
     }
 }

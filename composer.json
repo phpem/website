@@ -4,6 +4,7 @@
     "require": {
         "php": "^7.0.8",
         "doctrine/doctrine-migrations-bundle": "^1.2",
+        "league/commonmark": "^0.15.7",
         "symfony/console": "^3.3",
         "symfony/framework-bundle": "^3.3",
         "symfony/monolog-bundle": "^3.1",
