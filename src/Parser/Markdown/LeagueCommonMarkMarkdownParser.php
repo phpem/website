@@ -20,7 +20,7 @@ class LeagueCommonMarkMarkdownParser implements MarkdownParser
     /**
      * @inheritdoc
      */
-    public function parse(string $content): string
+    public function parse(?string $content): ?string
     {
         return $this->converter->convertToHtml($content);
     }

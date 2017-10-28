@@ -7,9 +7,9 @@ interface MarkdownParser
     /**
      * Renders Markdown into HTML
      *
-     * @param string $content
+     * @param string|string $content
      *
-     * @return string
+     * @return string|null
      */
-    public function parse(string $content): string;
+    public function parse(?string $content): ?string;
 }

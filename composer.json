@@ -6,6 +6,7 @@
         "dms/meetup-api-client": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "league/commonmark": "^0.15.7",
+        "symfony/cache": "^3.3",
         "symfony/console": "^3.3",
         "symfony/framework-bundle": "^3.3",
         "symfony/monolog-bundle": "^3.1",

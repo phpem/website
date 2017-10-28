@@ -43,6 +43,16 @@ services:
 
     App\Parser\Markdown\MarkdownParser: '@App\Parser\Markdown\LeagueCommonMarkMarkdownParser'
 
+    App\Cache:
+        class: Symfony\Component\Cache\Simple\FilesystemCache
+
+    App\Parser\Markdown\CachingMarkdownParser:
+        class: App\Parser\Markdown\CachingMarkdownParser
+        arguments:
+            - '@App\Parser\Markdown\CachingMarkdownParser.inner'
+            - '@App\Cache'
+        decorates: App\Parser\Markdown\MarkdownParser
+
     App\Twig\AppExtension:
         class: App\Twig\AppExtension
         arguments:
