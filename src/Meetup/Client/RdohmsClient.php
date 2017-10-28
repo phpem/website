@@ -7,21 +7,28 @@ use DMS\Service\Meetup\MeetupKeyAuthClient;
 
 class RdohmsClient implements Client
 {
-
     /**
      * @var MeetupKeyAuthClient
      */
     private $client;
 
-    public function __construct(MeetupKeyAuthClient $client)
+    /**
+     * The group name
+     *
+     * @var string
+     */
+    private $group;
+
+    public function __construct(MeetupKeyAuthClient $client, string $group)
     {
         $this->client = $client;
+        $this->group = $group;
     }
 
     public function getUpcoming()
     {
         $events = $this->client->getEvents([
-            'group_urlname' => 'ugphpem',
+            'group_urlname' => $this->group,
             'status' => 'upcoming'
         ]);
 

@@ -70,5 +70,6 @@ services:
         class: App\Meetup\Client\RdohmsClient
         arguments:
             - '@DMS\Service\Meetup\MeetupKeyAuthClient'
+            - '%env(MEETUP_GROUP_NAME)%'
 
     App\Meetup\Client: '@App\Meetup\Client\RdohmsClient'
