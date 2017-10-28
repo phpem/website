@@ -43,14 +43,14 @@ services:
 
     App\Parser\Markdown\MarkdownParser: '@App\Parser\Markdown\LeagueCommonMarkMarkdownParser'
 
-    App\Cache:
+    Psr\SimpleCache\CacheInterface:
         class: Symfony\Component\Cache\Simple\FilesystemCache
 
     App\Parser\Markdown\CachingMarkdownParser:
         class: App\Parser\Markdown\CachingMarkdownParser
         arguments:
             - '@App\Parser\Markdown\CachingMarkdownParser.inner'
-            - '@App\Cache'
+            - '@Psr\SimpleCache\CacheInterface'
         decorates: App\Parser\Markdown\MarkdownParser
 
     App\Twig\AppExtension:
@@ -76,7 +76,7 @@ services:
         class: App\Meetup\Client\CachingClient
         arguments:
           - '@App\Meetup\Client\CachingClient.inner'
-          - '@App\Cache'
+          - '@Psr\SimpleCache\CacheInterface'
         decorates: App\Meetup\Client\RdohmsClient
 
     App\Meetup\Client: '@App\Meetup\Client\CachingClient'
