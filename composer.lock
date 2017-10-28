@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "42422e0f791b6b2c152d1b2689e791d5",
+    "content-hash": "d8b74062d0de1f8b31ce462564ef1123",
     "packages": [
         {
             "name": "dms/meetup-api-client",
