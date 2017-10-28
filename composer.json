@@ -3,6 +3,7 @@
     "license": "proprietary",
     "require": {
         "php": "^7.0.8",
+        "dms/meetup-api-client": "^2.3",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "league/commonmark": "^0.15.7",
         "symfony/console": "^3.3",

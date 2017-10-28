@@ -49,3 +49,16 @@ services:
             - '@App\Parser\Markdown\MarkdownParser'
         tags:
             - twig.extension
+
+    DMS\Service\Meetup\MeetupKeyAuthClient:
+        class: DMS\Service\Meetup\MeetupKeyAuthClient
+        factory: 'DMS\Service\Meetup\MeetupKeyAuthClient::factory'
+        arguments:
+            - key: '%env(MEETUP_API_KEY)%'
+
+    App\Meetup\Client\RdohmsClient:
+        class: App\Meetup\Client\RdohmsClient
+        arguments:
+            - '@DMS\Service\Meetup\MeetupKeyAuthClient'
+
+    App\Meetup\Client: '@App\Meetup\Client\RdohmsClient'
