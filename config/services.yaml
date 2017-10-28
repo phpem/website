@@ -72,4 +72,11 @@ services:
             - '@DMS\Service\Meetup\MeetupKeyAuthClient'
             - '%env(MEETUP_GROUP_NAME)%'
 
-    App\Meetup\Client: '@App\Meetup\Client\RdohmsClient'
+    App\Meetup\Client\CachingClient:
+        class: App\Meetup\Client\CachingClient
+        arguments:
+          - '@App\Meetup\Client\CachingClient.inner'
+          - '@App\Cache'
+        decorates: App\Meetup\Client\RdohmsClient
+
+    App\Meetup\Client: '@App\Meetup\Client\CachingClient'
