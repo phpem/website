@@ -25,19 +25,37 @@ class CachingClient implements Client
         $this->cache = $cache;
     }
 
-    public function getUpcoming()
+    public function getUpcoming(): array
     {
         $key = "events-upcoming"; // generate a hash for the cache key
 
         try {
             if ( ! $this->cache->has($key)) {
-                $upcomingEvents = $this->client->getUpcoming();
-                $this->cache->set($key, $upcomingEvents);
-                return $upcomingEvents;
+                $events = $this->client->getUpcoming();
+                $this->cache->set($key, $events);
+                return $events;
             }
             return $this->cache->get($key);
         } catch (InvalidArgumentException $e) {
             return null;
         }
     }
+
+    public function getPast(): array
+    {
+        $key = "events-past"; // generate a hash for the cache key
+
+        try {
+            if ( ! $this->cache->has($key)) {
+                $events = $this->client->getPast();
+                $this->cache->set($key, $events);
+                return $events;
+            }
+            return $this->cache->get($key);
+        } catch (InvalidArgumentException $e) {
+            return null;
+        }
+    }
+
+
 }

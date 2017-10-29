@@ -36,10 +36,16 @@ class RefreshCommand extends Command
     public function execute(InputInterface $input, OutputInterface $output)
     {
         // Clear the cache and force a refresh from meetup
-        $this->cache->delete('events-upcoming');
-        $fetched = count( $this->client->getUpcoming() );
+        $this->cache->deleteMultiple([
+            'events-upcoming',
+            'events-past'
+        ]);
 
+        $fetched = count( $this->client->getUpcoming() );
         $output->writeln("Fetched $fetched upcoming events");
+
+        $fetched = count( $this->client->getPast() );
+        $output->writeln("Fetched $fetched previous events");
 
         return 0; // return 0 on success
     }

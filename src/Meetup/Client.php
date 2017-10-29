@@ -4,5 +4,7 @@ namespace App\Meetup;
 
 interface Client
 {
-    public function getUpcoming();
+    public function getUpcoming(): array;
+
+    public function getPast(): array;
 }
