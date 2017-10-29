@@ -5,3 +5,11 @@ homepage:
 pages.about:
     path: /about
     defaults: { _controller: 'App\Controller\Page\AboutController::index' }
+
+events.next:
+    path: /event/next
+    defaults: { _controller: 'App\Controller\EventController::next' }
+
+events.event:
+    path: /event/{event}
+    defaults: { _controller: 'App\Controller\EventController::event' }

@@ -32,7 +32,12 @@ class RdohmsClient implements Client
             'status' => 'upcoming'
         ]);
 
-        return $events->getData();
+        $upcoming = [];
+        foreach ($events as $event) {
+            $upcoming[$event['id']] = $event;
+        }
+
+        return $upcoming;
     }
 
 }
