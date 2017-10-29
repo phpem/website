@@ -53,6 +53,14 @@ class RdohmsClient implements Client
         return $this->processEvents($events);
     }
 
+    public function getEvents(): array
+    {
+        $upcoming = $this->getUpcoming();
+        $past = $this->getPast();
+
+        return array_merge($upcoming, $past);
+    }
+
     protected function processEvents(MultiResultResponse $events): array
     {
         $upcoming = [];

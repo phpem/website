@@ -57,5 +57,13 @@ class CachingClient implements Client
         }
     }
 
+    public function getEvents(): array
+    {
+        $upcoming = $this->getUpcoming();
+        $past = $this->getPast();
+
+        return $upcoming + $past;
+    }
+
 
 }
