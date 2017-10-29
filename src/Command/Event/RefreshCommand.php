@@ -37,7 +37,9 @@ class RefreshCommand extends Command
     {
         // Clear the cache and force a refresh from meetup
         $this->cache->delete('events-upcoming');
-        $this->client->getUpcoming();
+        $fetched = count( $this->client->getUpcoming() );
+
+        $output->writeln("Fetched $fetched upcoming events");
 
         return 0; // return 0 on success
     }
