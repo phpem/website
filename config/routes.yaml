@@ -10,6 +10,10 @@ events.next:
     path: /event/next
     defaults: { _controller: 'App\Controller\EventController::next' }
 
+events.past:
+    path: /event/past
+    defaults: { _controller: 'App\Controller\EventController::past' }
+
 events.event:
     path: /event/{event}
     defaults: { _controller: 'App\Controller\EventController::event' }

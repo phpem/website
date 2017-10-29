@@ -17,9 +17,16 @@ class EventController extends Controller
         return $this->render('events/next.html.twig', ['events' => $events]);
     }
 
+    public function past(Client $client)
+    {
+        $events = $client->getPast();
+
+        return $this->render('events/past.html.twig', ['events' => $events]);
+    }
+
     public function event(string $event, Client $client)
     {
-        $events = $client->getUpcoming();
+        $events = $client->getEvents();
 
         if ( !array_key_exists($event, $events) ) {
             throw new NotFoundHttpException('An event with the id ' . $event .' was not found');
