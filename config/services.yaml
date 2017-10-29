@@ -70,6 +70,7 @@ services:
         class: App\Meetup\Client\RdohmsClient
         arguments:
             - '@DMS\Service\Meetup\MeetupKeyAuthClient'
+            - '@App\Converter\HtmlToMarkdownConverter'
             - '%env(MEETUP_GROUP_NAME)%'
 
     App\Meetup\Client\CachingClient:
@@ -80,3 +81,13 @@ services:
         decorates: App\Meetup\Client\RdohmsClient
 
     App\Meetup\Client: '@App\Meetup\Client\CachingClient'
+
+    League\HTMLToMarkdown\HtmlConverter:
+        class: League\HTMLToMarkdown\HtmlConverter
+        arguments:
+            - strip_tags: true
+
+    App\Converter\HtmlToMarkdownConverter:
+        class: App\Converter\HtmlToMarkdownConverter
+        arguments:
+          - '@League\HTMLToMarkdown\HtmlConverter'
