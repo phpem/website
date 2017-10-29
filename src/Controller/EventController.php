@@ -10,6 +10,18 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class EventController extends Controller
 {
+    public function index(Client $client)
+    {
+        $upcoming = $client->getUpcoming();
+        $past = $client->getPast();
+
+        return $this->render('events/index.html.twig', [
+            'upcoming' => $upcoming,
+            'past' => $past
+        ]);
+    }
+
+
     public function next(Client $client)
     {
         $events = $client->getUpcoming();

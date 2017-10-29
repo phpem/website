@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<h1>Next Events</h1>
+    <ul>
+        {% for event in upcoming %}
+            <li>
+                <a href="{{ path('events.event', {'event':event.id}) }}">{{ event.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+<h1>Past Events</h1>
+
+    <ul>
+        {% for event in past %}
+            <li>
+                <a href="{{ path('events.event', {'event':event.id}) }}">{{ event.name }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
