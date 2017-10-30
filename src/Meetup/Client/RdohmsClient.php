@@ -37,7 +37,8 @@ class RdohmsClient implements Client
     {
         $events = $this->client->getEvents([
             'group_urlname' => $this->group,
-            'status' => 'upcoming'
+            'status' => 'upcoming',
+            'desc' => 'true'
         ]);
 
         return $this->processEvents($events);
@@ -47,7 +48,8 @@ class RdohmsClient implements Client
     {
         $events = $this->client->getEvents([
             'group_urlname' => $this->group,
-            'status' => 'past'
+            'status' => 'past',
+            'desc' => 'true'
         ]);
 
         return $this->processEvents($events);
