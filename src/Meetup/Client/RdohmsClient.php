@@ -33,28 +33,31 @@ class RdohmsClient implements Client
         $this->group = $group;
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getUpcoming(): array
     {
-        $events = $this->client->getEvents([
-            'group_urlname' => $this->group,
-            'status' => 'upcoming',
-            'desc' => 'true'
-        ]);
+        $args = $this->buildArguments('upcoming');
+        $events = $this->client->getEvents($args);
 
         return $this->processEvents($events);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getPast(): array
     {
-        $events = $this->client->getEvents([
-            'group_urlname' => $this->group,
-            'status' => 'past',
-            'desc' => 'true'
-        ]);
+        $args = $this->buildArguments('past');
+        $events = $this->client->getEvents($args);
 
         return $this->processEvents($events);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function getEvents(): array
     {
         $upcoming = $this->getUpcoming();
@@ -63,14 +66,35 @@ class RdohmsClient implements Client
         return array_merge($upcoming, $past);
     }
 
+    /**
+     * Process the events fetched from meetup
+     *
+     * @param MultiResultResponse $events
+     * @return array
+     */
     protected function processEvents(MultiResultResponse $events): array
     {
-        $upcoming = [];
+        $processed = [];
         foreach ($events as $event) {
             $event['description'] = $this->converter->convert($event['description']);
-            $upcoming[$event['id']] = $event;
+            $processed[$event['id']] = $event;
         }
-        return $upcoming;
+        return $processed;
+    }
+
+    /**
+     * Build the arguments array for querying meetup
+     *
+     * @param string $status
+     * @return array
+     */
+    protected function buildArguments(string $status): array
+    {
+        return [
+            'group_urlname' => $this->group,
+            'status' => $status,
+            'desc' => 'true'
+        ];
     }
 
 }
