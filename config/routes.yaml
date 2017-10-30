@@ -7,17 +7,17 @@ pages.about:
     defaults: { _controller: 'App\Controller\Page\AboutController::index' }
 
 events.index:
-    path: /event/
-    defaults: { _controller: 'App\Controller\EventController::index' }
+    path: /events/
+    defaults: { _controller: 'App\Controller\EventsController::index' }
 
 events.next:
-    path: /event/next
-    defaults: { _controller: 'App\Controller\EventController::next' }
+    path: /events/next/
+    defaults: { _controller: 'App\Controller\EventsController::next' }
 
 events.past:
-    path: /event/past
-    defaults: { _controller: 'App\Controller\EventController::past' }
+    path: /events/past/
+    defaults: { _controller: 'App\Controller\EventsController::past' }
 
 events.event:
-    path: /event/{event}
-    defaults: { _controller: 'App\Controller\EventController::event' }
+    path: /events/{event}
+    defaults: { _controller: 'App\Controller\EventsController::event' }

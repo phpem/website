@@ -8,7 +8,7 @@ use App\Meetup\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class EventController extends Controller
+class EventsController extends Controller
 {
     public function index(Client $client)
     {
